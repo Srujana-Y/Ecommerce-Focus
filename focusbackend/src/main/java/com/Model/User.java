@@ -14,6 +14,10 @@ public class User implements Serializable
 	  private String email;
       private String name;
       private String password;
+      private String role;
+      private String address;
+      private String mobile;
+      private boolean enabled;
       public String getEmail() {
 		return email;
 	}
@@ -44,11 +48,11 @@ public class User implements Serializable
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getPhone() {
-		return phone;
+	public String getMobile() {
+		return mobile;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 	public boolean isEnabled() {
 		return enabled;
@@ -56,8 +60,5 @@ public class User implements Serializable
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	private String role;
-      private String address;
-      private String phone;
-      private boolean enabled;
+	
 }
