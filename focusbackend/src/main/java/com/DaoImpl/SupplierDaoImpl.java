@@ -12,8 +12,7 @@ import com.Model.Supplier;
 
 
 @Repository("supplierDao")
-public class SupplierDaoImpl implements SupplierDao
-{
+public class SupplierDaoImpl implements SupplierDao{
 
 	@Autowired
 	SessionFactory sessionFactory;

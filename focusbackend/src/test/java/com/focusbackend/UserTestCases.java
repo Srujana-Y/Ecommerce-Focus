@@ -15,8 +15,7 @@ public class UserTestCases {
 	
 	
 	@BeforeClass
-	public static void initalize()
-	{
+	public static void initalize(){
 		System.out.println("Starting into Initializaed Blog Test case ");
 		
 		AnnotationConfigApplicationContext annotationConfigAppContext=new AnnotationConfigApplicationContext();

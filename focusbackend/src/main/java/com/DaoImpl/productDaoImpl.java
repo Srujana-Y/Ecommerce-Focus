@@ -21,8 +21,7 @@ public class productDaoImpl implements ProductDao
 	
 	@Transactional
 	
-	public boolean insertProduct(Product product)
-	{
+	public boolean insertProduct(Product product){
 		try
 		{
 		sessionFactory.getCurrentSession().saveOrUpdate(product);

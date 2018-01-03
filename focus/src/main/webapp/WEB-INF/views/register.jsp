@@ -17,7 +17,7 @@
 
 <h2>Registration Form</h2>
 
-<div class="col-sm-8">
+<div class="col-sm-10">
 <div class="row">
 
 <form:form modelAttribute="user" action="saveRegister" method="post">

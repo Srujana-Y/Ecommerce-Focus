@@ -9,7 +9,7 @@ import com.Dao.CategoryDao;
 import com.Model.Category;
 
 @Repository("categoryDao")
-public class CategoryDaoImpl implements CategoryDao {
+public class CategoryDaoImpl implements CategoryDao{
 
 	@Autowired
 	SessionFactory sessionFactory;

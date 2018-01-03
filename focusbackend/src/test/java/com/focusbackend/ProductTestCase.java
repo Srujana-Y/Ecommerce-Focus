@@ -15,8 +15,7 @@ static ProductDao productDao;
 	
 	
 	@BeforeClass
-	public static void initalize()
-	{
+	public static void initalize(){
 		System.out.println("Starting into Initializaed Product Test case ");
 		
 		AnnotationConfigApplicationContext annotationConfigAppContext=new AnnotationConfigApplicationContext();

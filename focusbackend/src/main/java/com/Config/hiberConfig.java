@@ -39,8 +39,7 @@ public class hiberConfig
     	return dsource;
     }
 
-    private Properties getHiber()
-    {
+    private Properties getHiber(){
     	Properties p=new Properties();
     	p.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
     	p.put("hibernate.hbm2ddl.auto","update");
