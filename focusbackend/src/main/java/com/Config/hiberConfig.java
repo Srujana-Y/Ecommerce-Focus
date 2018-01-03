@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.DaoImpl.UserDaoImpl;
 import com.Model.Category;
+import com.Model.Product;
 import com.Model.Supplier;
 import com.Model.User;
 
@@ -56,6 +57,7 @@ public class hiberConfig
     	lsfb.addAnnotatedClass(User.class);
     	lsfb.addAnnotatedClass(Supplier.class);
     	lsfb.addAnnotatedClass(Category.class);
+    	lsfb.addAnnotatedClass(Product.class);
     	return lsfb.buildSessionFactory();
     	
     }

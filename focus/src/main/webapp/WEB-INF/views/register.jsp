@@ -7,11 +7,10 @@
 <title>Focus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 <div class="container">
@@ -19,7 +18,7 @@
 <h2>Registration Form</h2>
 
 <div class="col-sm-8">
-<dic class="row">
+<div class="row">
 
 <form:form modelAttribute="user" action="saveRegister" method="post">
 <div class="form-group">
@@ -45,7 +44,7 @@
 <div class="form-group">
 <lable>Mobile: </lable>
 <form:input path="Mobile" class="form-control placeholder="Enter Mobile"/>
- <div>
+ </div>
  
  <br><br>
  <button type="submit" class="btn btn-lg btn-primary">SUBMIT</button>
@@ -53,6 +52,7 @@
  <button type="submit" class="btn btn-lg btn-info">CANCEL</button>
 </form:form>
  
+ </div>
 </div>
 </div>
 </body>

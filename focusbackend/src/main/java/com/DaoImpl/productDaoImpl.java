@@ -1,32 +1,31 @@
 package com.DaoImpl;
-import org.hibernate.SessionFactory;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.Dao.CategoryDao;
-import com.Model.Category;
+import com.Dao.ProductDao;
+import com.Model.Product;
 
-@Repository("categoryDao")
-public class CategoryDaoImpl implements CategoryDao {
-
+@Repository("productDao")
+public class productDaoImpl implements ProductDao
+{
 	@Autowired
 	SessionFactory sessionFactory;
-	
-	public CategoryDaoImpl(SessionFactory sessionFactory)
+	public productDaoImpl(SessionFactory sessionFactory)
 	{
 		this.sessionFactory=sessionFactory;
 	}
 	
+	
 	@Transactional
 	
-	 public boolean insertCategory(Category category) 
+	public boolean insertProduct(Product product)
 	{
-		
 		try
 		{
-		sessionFactory.getCurrentSession().saveOrUpdate(category);
+		sessionFactory.getCurrentSession().saveOrUpdate(product);
 		System.out.println("Insertion successful");
 		return true;
 		}
@@ -36,8 +35,5 @@ public class CategoryDaoImpl implements CategoryDao {
 		System.out.println("Exception Arised:"+e);
 		return false;
 		}
-		
 	}
-
-	
 }

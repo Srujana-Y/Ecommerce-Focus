@@ -2,6 +2,7 @@ package com.Model;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,9 +13,6 @@ import org.springframework.stereotype.Component;
 
 public class Category implements Serializable
 {
-	/*
-	 * *
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	private int cid;
