@@ -15,18 +15,18 @@ public class Category implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	private int cid;
-	private String name;
-	
+	private String cname;
 	public int getCid() {
 		return cid;
 	}
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
-	public String getName() {
-		return name;
+	public String getCname() {
+		return cname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
+	
 }

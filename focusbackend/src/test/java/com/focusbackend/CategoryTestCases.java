@@ -36,7 +36,7 @@ public static void initalize(){
 		
 
 		category.setCid(100);
-		category.setName("Digital");
+		category.setCname("Digital");
 
 
 		assertTrue("Problem in blog creation",categoryDao.insertCategory(category));

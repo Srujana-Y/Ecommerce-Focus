@@ -10,13 +10,14 @@ import org.springframework.stereotype.Repository;
 import com.Dao.SupplierDao;
 import com.Model.Supplier;
 
-
-@Repository("supplierDao")
+                                 //@Repository
+@Repository("supplierDao")       //@Service
 public class SupplierDaoImpl implements SupplierDao{
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
+	                              //@Autowired
 	public SupplierDaoImpl(SessionFactory sessionFactory)
 	{
 		this.sessionFactory=sessionFactory;

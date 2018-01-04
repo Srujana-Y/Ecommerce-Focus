@@ -27,7 +27,7 @@
       <li><a href="/">Home</a>
       <li><a href="contact">Contact</a></li>
       <li><a href="ProductList">Product List</a></li>
-      <li><a href="admin">Admin</a></li>
+      <li><a href="adding">Admin</a></li>
       <li><a href="goToRegister">Register</a></li>
     </ul>
   </div>

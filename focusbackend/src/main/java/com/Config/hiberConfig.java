@@ -22,7 +22,7 @@ import com.Model.Supplier;
 import com.Model.User;
 
 @Configuration
-@ComponentScan("com")  //----doubt---------
+@ComponentScan("com")  
 @EnableTransactionManagement
 public class hiberConfig 
 {
