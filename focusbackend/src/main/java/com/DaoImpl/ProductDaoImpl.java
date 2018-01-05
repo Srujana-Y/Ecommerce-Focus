@@ -9,11 +9,11 @@ import com.Dao.ProductDao;
 import com.Model.Product;
 
 @Repository("productDao")
-public class productDaoImpl implements ProductDao
+public class ProductDaoImpl implements ProductDao
 {
 	@Autowired
 	SessionFactory sessionFactory;
-	public productDaoImpl(SessionFactory sessionFactory)
+	public ProductDaoImpl(SessionFactory sessionFactory)
 	{
 		this.sessionFactory=sessionFactory;
 	}

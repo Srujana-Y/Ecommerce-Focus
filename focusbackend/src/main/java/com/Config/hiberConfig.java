@@ -15,6 +15,9 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.DaoImpl.CategoryDaoImpl;
+import com.DaoImpl.ProductDaoImpl;
+import com.DaoImpl.SupplierDaoImpl;
 import com.DaoImpl.UserDaoImpl;
 import com.Model.Category;
 import com.Model.Product;
@@ -61,7 +64,33 @@ public class hiberConfig
     	
     }
     
+    @Autowired
+    @Bean(name="UserDaoImpl")
+    public UserDaoImpl getUserDAO(SessionFactory sessionFactory)
+    {
+    return new UserDaoImpl(sessionFactory);
+    }
 
+    @Autowired
+    @Bean(name="CategoryDaoImpl")
+    public CategoryDaoImpl getCategoryDAO(SessionFactory sessionFactory)
+    {
+    return new CategoryDaoImpl(sessionFactory);
+    }
+
+    @Autowired
+    @Bean(name="ProductDaoImpl")
+    public ProductDaoImpl getProductDAO(SessionFactory sessionFactory)
+    {
+    return new ProductDaoImpl(sessionFactory);
+    }
+
+    @Autowired
+    @Bean(name="SupplierDaoImpl")
+    public SupplierDaoImpl getSupplierDAO(SessionFactory sessionFactory)
+    {
+    return new SupplierDaoImpl(sessionFactory);
+    }
 
     @Bean(name="transactionManager")
     public HibernateTransactionManager getTrans(SessionFactory sf)

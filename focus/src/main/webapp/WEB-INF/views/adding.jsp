@@ -54,10 +54,67 @@
    <input class="form-control" type="text" name="cname" required/>
    <br><br>
    <button role="button" class="btn btn-primary">Submit</button>
-   <button role="button" class="btn btn-warning">Cancel</button>
-   
+   <button role="button" class="btn btn-warning">Cancel</button> 
  </form>
 </div>
+
+<div class="tab-pane fade" id="tab3">
+ <form action="<c:url value="/admin/savePro"/>" method="post" class="form-signin" enctype="mutipart/form-data">
+   <span id="reauth-email" class="reauth-email"></span>
+   <h4 class="input-title">Product Name</h4>
+   <input class="form-control" type="text" name="pName" required/>
+   <br>
+   <h4 class="input-title">Product Description</h4>
+   <input class="form-control" type="text" name="pDescription" required/>
+   <br>
+   <h4 class="input-title">Product Price</h4>
+   <input class="form-control" type="number" name="pPrice" required/>
+   <br>
+   <h4 class="input-title">Product Stock</h4>
+   <input class="form-control" type="number" name="pStock" required/>
+   
+   <div class="form-group">
+   <table>
+   <tr>
+     <td>Select Supplier</td>
+     <td>
+     <select class="form-control" name="pSupplier" required>
+     <option value="">------Select Supplier----</option>
+     <c:forEach items="${satList}" var="sat">
+     <option value="${sat.sid}">${sat.suppliername }</option>
+     </c:forEach>
+     </select>
+   </tr>
+   </table>
+   </div>
+   
+   <div class="form-group">
+   <table>
+   <tr>
+     <td>Select Category</td>
+     <td>
+     <select class="form-control" name="pCategory" required>
+     <option value="">------Select Category----</option>
+     <c:forEach items="${catList}" var="cat">
+     <option value="${cat.cid}">${cat.cname}</option>
+     </c:forEach>
+     </select>
+   </tr>
+   </table>
+   </div>
+   
+   <div class="fileinput fileinput-new" data-provides="fileinput">
+   <td><input class="form-control" type="file" name="file" accept="image/*"></td>
+   
+   
+   </div>
+   
+   <br><br>
+   <button role="button" class="btn btn-primary">Submit</button>
+   <button role="button" class="btn btn-warning">Cancel</button> 
+ </form>
+</div>
+
 </div>
 </div>
 </div>
