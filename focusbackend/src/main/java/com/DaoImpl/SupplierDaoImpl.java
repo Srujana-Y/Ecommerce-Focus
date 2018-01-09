@@ -2,58 +2,50 @@ package com.DaoImpl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.Dao.SupplierDao;
+import com.Model.Category;
+import com.Model.Product;
 import com.Model.Supplier;
 
-                                 //@Repository
-@Repository("supplierDao")       //@Service
-public class SupplierDaoImpl implements SupplierDao{
 
+@SuppressWarnings("deprecation")
+
+@Repository("supplierDaoImpl")
+public class SupplierDaoImpl implements SupplierDao 
+{
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	                              //@Autowired
 	public SupplierDaoImpl(SessionFactory sessionFactory)
 	{
 		this.sessionFactory=sessionFactory;
 	}
 	
-	@Transactional
-
-	public boolean insertSupplier(Supplier supplier) {
-		try
-		{
-		sessionFactory.getCurrentSession().saveOrUpdate(supplier);
-		System.out.println("Insertion successful");
-		return true;
-		}
-		
-		catch(Exception e)
-		{
-		System.out.println("Exception Arised:"+e);
-		return false;
-		}
-		
-	}
- 
-	public List<Supplier> retrieve()
+	public void insertSupplier(Supplier supplier)
 	{
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
-		List<Supplier> li=session.createQuery("from Supplier").list();
+		session.saveOrUpdate(supplier);
+		session.getTransaction().commit();
+	}
+	
+	public List<Supplier>retrieve()
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		List<Supplier>li=session.createQuery("from Supplier").list();
 		session.getTransaction().commit();
 		return li;
 	}
-  
-	public Supplier findBySuppId(int sid)
+	
+	public Supplier findById(int sid)
 	{
 		Session session=sessionFactory.openSession();
 		Supplier s=null;
@@ -65,9 +57,37 @@ public class SupplierDaoImpl implements SupplierDao{
 		}
 		catch(HibernateException e)
 		{
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			session.getTransaction().rollback();
 		}
 		return s;
+		
 	}
+	//================delete supplier=======================
+	public void deleteSupplier(int sid)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		Supplier supplier=(Supplier)session.get(Supplier.class, sid);
+		session.delete(supplier);
+		session.getTransaction().commit();
+	}
+	//==============update supplier==========================
+	public void update(Supplier s)
+	{
+		Session session=sessionFactory.openSession();
+		try
+		{
+			session.beginTransaction();
+			session.update(s);
+			session.getTransaction().commit();
+		}
+		catch(HibernateException ex)
+		{
+			ex.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		
+	}
+	
 }

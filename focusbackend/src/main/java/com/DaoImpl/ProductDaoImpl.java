@@ -1,38 +1,108 @@
 package com.DaoImpl;
 
+import java.util.List;
+
+
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
 import com.Dao.ProductDao;
+import com.Model.Category;
 import com.Model.Product;
 
-@Repository("productDao")
+
+@SuppressWarnings("deprecation")
+
+@Repository("productDaoImpl")
 public class ProductDaoImpl implements ProductDao
 {
 	@Autowired
 	SessionFactory sessionFactory;
+	
 	public ProductDaoImpl(SessionFactory sessionFactory)
 	{
 		this.sessionFactory=sessionFactory;
 	}
 	
+	public void insertProduct(Product product)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.saveOrUpdate(product);
+		session.getTransaction().commit();
+	}
 	
-	@Transactional
+	public List<Product> retrieve()
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		List<Product>list=session.createQuery("from Product").list();
+		session.getTransaction().commit();
+		return list;
+	}
 	
-	public boolean insertProduct(Product product){
+	public Product findById(int pid)
+	{
+		Session session=sessionFactory.openSession();
+		Product p=null;
 		try
 		{
-		sessionFactory.getCurrentSession().saveOrUpdate(product);
-		System.out.println("Insertion successful");
-		return true;
+			session.beginTransaction();
+			p=session.get(Product.class, pid);
+			session.getTransaction().commit();
 		}
+		catch(HibernateException e)
+		{
+			e.printStackTrace();
+			session.getTransaction().rollback();
+		}
+		return p;
 		
+	}
+	
+	@Override
+	public List<Product> getProdCatById(int cid) {
+		Session session=sessionFactory.openSession();
+		List<Product> prod=null;
+		try
+		{
+		session.beginTransaction();
+		prod=session.createQuery("from Product where cid="+cid).list();
+		System.out.println(prod);
+		session.getTransaction().commit();
+		}
 		catch(Exception e)
 		{
-		System.out.println("Exception Arised:"+e);
-		return false;
+			System.out.println(e);
+			session.getTransaction().rollback();
 		}
+		return prod;
 	}
+	//============for delete product============================
+	public void deleteProduct(int pid)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		Product product=(Product)session.get(Product.class, pid);
+		session.delete(product);
+		session.getTransaction().commit();
+	}
+	//============for update product=====================
+	public void update(Product p)
+	{
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.update(p);
+		session.getTransaction().commit();
+	}
+
+	
+
+	
+	
 }

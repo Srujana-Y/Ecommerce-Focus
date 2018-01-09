@@ -1,39 +1,46 @@
 package com.Model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javassist.SerialVersionUID;
+
+import javax.persistence.*;
+import javax.validation.*;
 
 import org.springframework.stereotype.Component;
 
-@Component
 @Entity
-public class Supplier implements Serializable {
-
+@Component
+@Table (name="Supplier")
+public class Supplier implements Serializable
+{
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	private int sid;
-	private String suppliername;
+	private String supplierName;
+	
+	
+	
+	@OneToMany(targetEntity=Product.class,fetch=FetchType.EAGER,mappedBy=("supplier"))
+	private Set<Product>product=new HashSet<Product>(0);
+	
 	public int getSid() {
 		return sid;
 	}
 	public void setSid(int sid) {
 		this.sid = sid;
 	}
-	public String getSuppliername() {
-		return suppliername;
-	}
-	public void setSuppliername(String suppliername) {
-		this.suppliername = suppliername;
-	}
 	
-	@OneToMany(targetEntity=Product.class,fetch=FetchType.EAGER, mappedBy="supplier")
-	private Set<Product> product =new HashSet<Product>(0);
+	public String getSupplierName() {
+		return supplierName;
+	}
+	public void setSupplierName(String supplierName) {
+		this.supplierName = supplierName;
+	}
 	
 	public Set<Product> getProduct() {
 		return product;
@@ -42,4 +49,5 @@ public class Supplier implements Serializable {
 		this.product = product;
 	}
 	
+
 }

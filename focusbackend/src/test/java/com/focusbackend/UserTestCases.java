@@ -1,16 +1,9 @@
 package com.focusbackend;
 
-import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.Dao.UserDao;
-import com.Model.User;
 
 public class UserTestCases {
-
+/*
 	static UserDao userDao;
 	
 	
@@ -49,5 +42,5 @@ public class UserTestCases {
 	}
 
 
-
+*/
 }

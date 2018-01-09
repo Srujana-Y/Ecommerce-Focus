@@ -5,7 +5,7 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.hibernate.SessionFactory;
+import org.hibernate.SessionFactory;						//To create object of hibernate session
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,79 +24,90 @@ import com.Model.Product;
 import com.Model.Supplier;
 import com.Model.User;
 
-@Configuration
-@ComponentScan("com")  
-@EnableTransactionManagement
-public class hiberConfig 
+
+@Configuration				//Used to configure hibernate properties
+@ComponentScan("com.*")			 
+								
+@EnableTransactionManagement	//enabling Springâ€™s annotation-driven transaction management capability
+public class hiberConfig{
+
+@Autowired						
+								
+@Bean(name="dataSource")	//"dataSource"=bean name
+public DataSource getH2DataSource()
 {
+System.out.println("Data Source Method");
+DriverManagerDataSource dataSource = new DriverManagerDataSource();		//spring-jdbc
+dataSource.setDriverClassName("org.h2.Driver");			//driver class
+dataSource.setUrl("jdbc:h2:tcp://localhost/~/focus");	//JDBC URL
+dataSource.setUsername("sa");							//username
+dataSource.setPassword("");								//password
 
-	@Bean(name="dataSource")
-    public DataSource getH2Data()
-    {
-    	DriverManagerDataSource dsource=new DriverManagerDataSource();
-    	dsource.setDriverClassName("org.h2.Driver");
-    	dsource.setUrl("jdbc:h2:tcp://localhost/~/focus");
-    	dsource.setUsername("sa");
-    	dsource.setPassword("");
-    	System.out.println("H2 DataBase Connected");
-    	return dsource;
-    }
+System.out.println("Data Source Created");
+System.out.println("************************Database h2 is connected******************************");
+return dataSource;
+}
+private Properties getHibernateProperties() 
+{
+System.out.println("************************Hibernate Properties******************************");
+Properties properties = new Properties();
+properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+properties.put("hibernate.hbm2ddl.auto", "update");	
+properties.put("hibernate.show_sql", "true");	
+return properties;
+}
 
-    private Properties getHiber(){
-    	Properties p=new Properties();
-    	p.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
-    	p.put("hibernate.hbm2ddl.auto","update");
-    	p.put("hibernate.show_sql", "true");
-    	System.out.println("Tables created");
-    	return p;
-    }
-    
-    @Bean(name="sessionFactory")
-    public SessionFactory getHiberSession(DataSource datasource)
-    {
-    	LocalSessionFactoryBuilder lsfb=new LocalSessionFactoryBuilder(datasource);
-    	lsfb.addProperties(getHiber());
-    	lsfb.addAnnotatedClass(User.class);
-    	lsfb.addAnnotatedClass(Supplier.class);
-    	lsfb.addAnnotatedClass(Category.class);
-    	lsfb.addAnnotatedClass(Product.class);
-    	return lsfb.buildSessionFactory();
-    	
-    }
-    
-    @Autowired
-    @Bean(name="UserDaoImpl")
-    public UserDaoImpl getUserDAO(SessionFactory sessionFactory)
-    {
-    return new UserDaoImpl(sessionFactory);
-    }
+@Autowired
+@Bean(name = "sessionFactory")
+public SessionFactory getSessionFactory(DataSource dataSource) {
+LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);	//spring-orm
+sessionBuilder.addProperties(getHibernateProperties());
+sessionBuilder.addAnnotatedClass(User.class); 
+sessionBuilder.addAnnotatedClass(Category.class); 
+sessionBuilder.addAnnotatedClass(Product.class); 
+sessionBuilder.addAnnotatedClass(Supplier.class); 
 
-    @Autowired
-    @Bean(name="CategoryDaoImpl")
-    public CategoryDaoImpl getCategoryDAO(SessionFactory sessionFactory)
-    {
-    return new CategoryDaoImpl(sessionFactory);
-    }
 
-    @Autowired
-    @Bean(name="ProductDaoImpl")
-    public ProductDaoImpl getProductDAO(SessionFactory sessionFactory)
-    {
-    return new ProductDaoImpl(sessionFactory);
-    }
+return sessionBuilder.buildSessionFactory();
+}
 
-    @Autowired
-    @Bean(name="SupplierDaoImpl")
-    public SupplierDaoImpl getSupplierDAO(SessionFactory sessionFactory)
-    {
-    return new SupplierDaoImpl(sessionFactory);
-    }
+@Autowired
+@Bean(name="UserDaoImpl")
+public UserDaoImpl getUserDAO(SessionFactory sessionFactory)
+{
+return new UserDaoImpl(sessionFactory);
+}
 
-    @Bean(name="transactionManager")
-    public HibernateTransactionManager getTrans(SessionFactory sf)
-    {
-    	HibernateTransactionManager htm=new HibernateTransactionManager(sf);
-    	return htm;
-    }
-    
+
+@Autowired
+@Bean(name="CategoryDaoImpl")
+public CategoryDaoImpl getCategoryDAO(SessionFactory sessionFactory)
+{
+return new CategoryDaoImpl(sessionFactory);
+}
+
+@Autowired
+@Bean(name="ProductDaoImpl")
+public ProductDaoImpl getProductDAO(SessionFactory sessionFactory)
+{
+return new ProductDaoImpl(sessionFactory);
+}
+
+@Autowired
+@Bean(name="SupplierDaoImpl")
+public SupplierDaoImpl getSupplierDAO(SessionFactory sessionFactory)
+{
+return new SupplierDaoImpl(sessionFactory);
+}
+
+
+
+@Autowired
+@Bean(name = "transactionManager")			//spring-orm
+public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) 
+{
+System.out.println("Transaction.....");
+HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+return transactionManager;
+}
 }

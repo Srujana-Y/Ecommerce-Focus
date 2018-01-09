@@ -7,19 +7,64 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>focus Maven Webapp</name>
   <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    
-     <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+  
+<dependencies>
+
+
+<dependency>
+  <groupId>com</groupId>
+  <artifactId>focusbackend</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 <dependency>
     <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.1.0</version>
+    <scope>provided</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
+<dependency>
+    <groupId>javax.servlet.jsp</groupId>
+    <artifactId>javax.servlet.jsp-api</artifactId>
+    <version>2.3.1</version>
+    <scope>provided</scope>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+<dependency>
+    <groupId>jstl</groupId>
     <artifactId>jstl</artifactId>
     <version>1.2</version>
+</dependency>
+
+
+
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>4.3.11.RELEASE</version>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-core</artifactId>
+    <version>4.3.11.RELEASE</version>
+</dependency>
+
+
+
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>4.3.11.RELEASE</version>
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
@@ -36,63 +81,23 @@
     <version>2.5</version>
 </dependency>
 
-<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-core</artifactId>
-    <version>4.3.12.RELEASE</version>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-webmvc</artifactId>
-    <version>4.3.12.RELEASE</version>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-context</artifactId>
-    <version>4.3.12.RELEASE</version>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-web</artifactId>
-    <version>4.3.12.RELEASE</version>
-</dependency>
-
-<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
-<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-web</artifactId>
-    <version>4.2.3.RELEASE</version>
-</dependency>
-    
-    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-core</artifactId>
-    <version>4.2.3.RELEASE</version>
-</dependency>
-    
-    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
-<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-config</artifactId>
-    <version>4.2.3.RELEASE</version>
-</dependency>
-
-<dependency>
-<groupId>com</groupId>
-  <artifactId>focusbackend</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-</dependency>
 
   </dependencies>
   <build>
+  
+  <!-- Updated for the latest version of JAVA -->
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+  
     <finalName>focus</finalName>
   </build>
 </project>
+

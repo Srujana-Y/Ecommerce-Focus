@@ -1,21 +1,26 @@
 package com.DaoImpl;
 import java.util.List;
 
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
 import com.Dao.CategoryDao;
+import com.Dao.UserDao;
 import com.Model.Category;
-import com.Model.Supplier;
+import com.Model.Product;
+import com.Model.User;
 
-@Repository("categoryDao")
-public class CategoryDaoImpl implements CategoryDao{
+@SuppressWarnings("unused")
 
+@Repository("categoryDaoImpl")
+
+public class CategoryDaoImpl implements CategoryDao
+{
 	@Autowired
 	SessionFactory sessionFactory;
 	
@@ -24,26 +29,15 @@ public class CategoryDaoImpl implements CategoryDao{
 		this.sessionFactory=sessionFactory;
 	}
 	
-	@Transactional
 	
-	 public boolean insertCategory(Category category) 
+	public void insertCategory(Category category)
 	{
-		
-		try
-		{
-		sessionFactory.getCurrentSession().saveOrUpdate(category);
-		System.out.println("Insertion successful");
-		return true;
-		}
-		
-		catch(Exception e)
-		{
-		System.out.println("Exception Arised:"+e);
-		return false;
-		}
-		
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		session.saveOrUpdate(category);
+		session.getTransaction().commit();
 	}
-
+	
 	public List<Category> retrieve()
 	{
 		Session session=sessionFactory.openSession();
@@ -52,8 +46,8 @@ public class CategoryDaoImpl implements CategoryDao{
 		session.getTransaction().commit();
 		return li;
 	}
-  
-	public Category findByCatId(int cid)
+	
+	public Category findById(int cid)
 	{
 		Session session=sessionFactory.openSession();
 		Category c=null;
@@ -63,12 +57,39 @@ public class CategoryDaoImpl implements CategoryDao{
 			c=session.get(Category.class, cid);
 			session.getTransaction().commit();
 		}
-		catch(HibernateException e)
+		catch(HibernateException ex)
 		{
-			System.out.println(e.getMessage());
+			ex.printStackTrace();
 			session.getTransaction().rollback();
 		}
 		return c;
+		
 	}
-	
+	//================for delete category================================
+		public void deleteCategory(int cid)
+		{
+			Session session=sessionFactory.openSession();
+			session.beginTransaction();
+			Category category=(Category)session.get(Category.class, cid);
+			session.delete(category);
+			session.getTransaction().commit();
+		}
+		//==========================update category======================================
+		public void updateCategory(Category c)
+		{
+			Session session=sessionFactory.openSession();
+			try
+			{
+				session.beginTransaction();
+				session.update(c);
+				session.getTransaction().commit();
+			}
+			catch(HibernateException ex)
+			{
+				ex.printStackTrace();
+				session.getTransaction().rollback();
+			}
+			
+		}
+
 }
