@@ -73,7 +73,6 @@ public class ProductDaoImpl implements ProductDao
 		{
 		session.beginTransaction();
 		prod=session.createQuery("from Product where cid="+cid).list();
-		System.out.println(prod);
 		session.getTransaction().commit();
 		}
 		catch(Exception e)
@@ -83,16 +82,16 @@ public class ProductDaoImpl implements ProductDao
 		}
 		return prod;
 	}
-	//============for delete product============================
+	
 	public void deleteProduct(int pid)
 	{
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
-		Product product=(Product)session.get(Product.class, pid);
-		session.delete(product);
+		Product p=(Product)session.get(Product.class, pid);
+		session.delete(p);
 		session.getTransaction().commit();
 	}
-	//============for update product=====================
+	
 	public void update(Product p)
 	{
 		Session session=sessionFactory.openSession();

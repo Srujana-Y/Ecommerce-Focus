@@ -32,10 +32,7 @@ public class Product  implements Serializable
 	private String description;
 	
 	
-	
-	public String getDescription() {
-		return description;
-	}
+
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="cid")
@@ -68,13 +65,6 @@ public class Product  implements Serializable
 		this.name = name;
 	}
 
-	public String getDescription(String description) {
-		return description;
-	}
-
-	public String setDescription(String description) {
-		return description;
-	}
 
 	public Float getPrice() {
 		return price;
@@ -123,6 +113,14 @@ public class Product  implements Serializable
 
 	public void setImgname(String imgname) {
 		this.imgname = imgname;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	

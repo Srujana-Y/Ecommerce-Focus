@@ -61,8 +61,7 @@ public class adminController
 	
 	
 	@RequestMapping(value="/saveCat",method=RequestMethod.POST)
-	@Transactional			//@Transactional which starts a transaction on each method start, 
-							//and commits it on each method exit ( or rollback if method was failed due to an error).
+	@Transactional			
 	public ModelAndView saveCategory(@RequestParam("cid")int cid,@RequestParam("name")String name)
 	{
 		ModelAndView mav=new ModelAndView();
@@ -70,7 +69,7 @@ public class adminController
 		cat.setCid(cid);
 		cat.setName(name);
 		categoryDaoImpl.insertCategory(cat);
-		mav.setViewName("adding");
+		mav.setViewName("modal");
 		return mav;
 	}
 	
@@ -85,7 +84,7 @@ public class adminController
 		sup.setSid(sid);
 		sup.setSupplierName(supplierName);
 		supplierDaoImpl.insertSupplier(sup);
-		mav.setViewName("adding");
+		mav.setViewName("modal");
 		return mav;
 	}
 	
@@ -130,7 +129,7 @@ public class adminController
 			e.printStackTrace();
 		}
 		
-		return "adding";
+		return "modal";
 	}
 	
 	@RequestMapping("/productList")//  /adminList
@@ -142,8 +141,8 @@ public class adminController
 		return mav;
 	}
 	
-	//======================delete the product============================================
-	/*@RequestMapping("/deleteProduct/{pid}")							
+	
+	@RequestMapping("/deleteProduct/{pid}")							
 	public String deleteProd(@PathVariable("pid") int pid)
 	{
 		productDaoImpl.deleteProduct(pid);
@@ -151,7 +150,7 @@ public class adminController
 		
 	}
 	
-	//===========================update product=====================================
+	
 	@RequestMapping("/updateProduct")									
 	public ModelAndView updateProd(@RequestParam("id")int pid)
 	{
@@ -165,7 +164,7 @@ public class adminController
 	}
 	
 	@RequestMapping(value="/productUpdate",method=RequestMethod.POST)
-	public ModelAndView editProduct(HttpServletRequest request,@RequestParam("file") MultipartFile file)
+	public ModelAndView updateProduct(HttpServletRequest request,@RequestParam("file") MultipartFile file)
 	{
 		ModelAndView mav=new ModelAndView();
 		String pid=request.getParameter("pid");
@@ -176,24 +175,24 @@ public class adminController
 		String pstock=request.getParameter("pStock");
 		String pdesc=request.getParameter("pDescription");
 		
-		Product prod1=new Product();
-		prod1.setId(Integer.parseInt(pid));
-		prod1.setName(pname);
-		prod1.setPrice(Float.parseFloat(pprice));
-	///	prod1.setDescription(pdesc);
-		prod1.setStock(Integer.parseInt(pstock));
+		Product prod=new Product();
+		prod.setId(Integer.parseInt(pid));
+		prod.setName(pname);
+		prod.setPrice(Float.parseFloat(pprice));
+	    prod.setDescription(pdesc);
+		prod.setStock(Integer.parseInt(pstock));
 		
-		//for category
-		prod1.setCategory(categoryDaoImpl.findById(Integer.parseInt(pcat)));
 		
-		//for supplier
-		prod1.setSupplier(supplierDaoImpl.findById(Integer.parseInt(psup)));
+		prod.setCategory(categoryDaoImpl.findById(Integer.parseInt(pcat)));
 		
-		//for adding image
+		
+		prod.setSupplier(supplierDaoImpl.findById(Integer.parseInt(psup)));
+		
+		
 		String filepath=request.getSession().getServletContext().getRealPath("/");
 		String filename=file.getOriginalFilename();
-		prod1.setImgname(filename);
-		productDaoImpl.insertProduct(prod1);
+		prod.setImgname(filename);
+		productDaoImpl.update(prod);
 		System.out.println("file path file "+filepath+" "+filename);
 		try
 		{
@@ -213,7 +212,7 @@ public class adminController
 		
 		mav.setViewName("redirect:/admin/productList?update");
 		return mav;
-	}*/
+	}
 	
 	
 		@RequestMapping("/categoryList")
@@ -224,15 +223,15 @@ public class adminController
 			mav.setViewName("categoryAdminList");
 			return mav;
 		}
-		//===============delete category=====================================================
-		/*@RequestMapping("/deleteCategory/{cid}")					
+		
+		@RequestMapping("/deleteCategory/{cid}")					
 		public String deleteCat(@PathVariable("cid") int cid)
 		{
 			categoryDaoImpl.deleteCategory(cid);
 			return "redirect:/admin/categoryList?del";
 			
 		}
-		//============================update category===================================
+		
 		@RequestMapping("/updateCategory")								
 		public ModelAndView updateCat(@RequestParam("cid")int cid)
 		{
@@ -258,8 +257,8 @@ public class adminController
 			categoryDaoImpl.updateCategory(cat1);
 			mav.setViewName("redirect:/admin/categoryList?update");
 			return mav;
-		}*/
-		//==========================Display supplier list for admin==========================================
+		}
+		
 		@RequestMapping("/supplierList")
 		public ModelAndView supplierList()
 		{
@@ -268,15 +267,15 @@ public class adminController
 			mav.setViewName("suppAdminList");
 			return mav;
 		}
-		//===================delete supplier==========================================
-		/*@RequestMapping("/deleteSupplier/{sid}")							
+		
+		@RequestMapping("/deleteSupplier/{sid}")							
 		public String deleteSup(@PathVariable("sid") int sid)
 		{
 			supplierDaoImpl.deleteSupplier(sid);
 			return "redirect:/admin/supplierList?del";
 			
 		}
-		//=================================update supplier======================================
+		
 		@RequestMapping("/updateSupplier")									
 		public ModelAndView updateSup(@RequestParam("sid")int sid)
 		{
@@ -301,6 +300,6 @@ public class adminController
 			supplierDaoImpl.update(sup);
 			mav.setViewName("redirect:/admin/supplierList?update");
 			return mav;
-		}*/
+		}
 	
 }

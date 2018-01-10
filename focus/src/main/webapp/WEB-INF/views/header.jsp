@@ -1,4 +1,4 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+ <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -41,11 +41,7 @@
  </li>
  </ul>  			
  <ul class="nav navbar-nav navbar-right">
- <li><a href="${pageContext.request.contextPath}/goToRegister">Register</a></li>
- 
- 
- <!--<li><a href="${pageContext.request.contextPath}/goToLogin">Login</a></li>-->
- <!--<li><a>Welcome: ${pageContext.request.userPrincipal.name}</a></li>   -->						
+ 				
  <li><a href="${pageContext.request.contextPath}/admin/adding">Admin</a></li>
  
  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown"
@@ -56,20 +52,28 @@
    <li><a href="${pageContext.request.contextPath}/admin/supplierList">Supplier</a></li>
  </ul>
  </li>
- 
+
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
 Category Choice<span class="caret"></span></a>
 <ul class="dropdown-menu">
 <c:forEach var="catVal" items="${catList}">
-<li><a href="${pageContext.request.contextPath}/productCatList?cid"=${catVal.cid}">${catVal.name}</a>
-</li>
-
+<li><a href="${pageContext.request.contextPath}/productCatList?cid=${catVal.cid}">${catVal.name}</a></li>
 </c:forEach>
-
 </ul>
+ 
+ <ul class="nav navbar-nav navbar right">
+ 
+ <c:if test="${pageContext.request.userPrincipal.name==null}">
+ <li><a href="${pageContext.request.contextPath}/goToRegister">Register</a></li>
+ <li><a href="${pageContext.request.contextPath}/goToLogin">Login</a></li>
+ </c:if>
+ 
+ <c:if test="${pageContext.request.userPrincipal.name==null}">
+ <li><a>Welcome: ${pageContext.request.userPrincipal.name}</a></li>
+ <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+ </c:if>
+ </ul>
 </div>
-
-
 </nav>
 </body>
 </html>

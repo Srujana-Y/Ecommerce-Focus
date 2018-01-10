@@ -48,10 +48,12 @@ background-image: url("../resources/images/wall2.jpg");
 
 		<td><c:out value="${c.name }"></c:out></td>
 
-		<!-- <td><c:set var="contextRoot" value="${pageContext.request.contextPath }"></c:set>
-		<a class="btn btn-info" role="button" style="color: red;" href="<c:url value="/admin/deleteCategory/${c.cid }"></c:url>"><i class="fa fa-trash-o" aria-hidden="true" ></i>Delete</a>
-		<a class="btn btn-info" role="button" style="color: green;" href="${contextRoot }/admin/updateCategory?cid=<c:out value="${c.cid }"></c:out>"><i class="fa fa-refresh" aria-hidden="true"></i>Update</a>
-		</td> -->
+		<td><c:set var="contextRoot" value="${pageContext.request.contextPath }"></c:set>
+		<a class="btn btn-info" role="button" style="color: red;" 
+		href="<c:url value="/admin/deleteCategory/${c.cid }"></c:url>"></i>Delete</a>
+		<a class="btn btn-info" role="button" style="color: green;" 
+		href="${contextRoot }/admin/updateCategory?cid=<c:out value="${c.cid }"></c:out>"></i>Edit</a>
+		</td> 
 	</tr>
 </c:forEach>
 </table>

@@ -35,7 +35,6 @@
 <th>Price</th>
 <th style="width:15%">Description</th>
 <th>Image</th>
-<th class="span2">Action</th>
 </tr> 
 
 
@@ -56,14 +55,7 @@
 <td><c:out value="${c.stock }"></c:out></td>
 <td class="span2"><c:out value="${c.description }"></c:out></td>
 <td><img src="${pageContext.request.contextPath}/resources/${c.imgname}" height="50px" width="50px"></td>
-<td><c:set var="contextRoot" value="${pageContext.request.contextPath }"></c:set>
 
-<a class="btn btn-info" role="button"  href="${contextRoot }/admin/updateProduct?id=<c:out value="${c.id }"></c:out>">
-</i>Edit</a>
-
-<a class="btn btn-warning" role="button"  href="<c:url value="/admin/deleteProduct/${c.id }"></c:url>">
-</i>Delete</a>
-</td>
 </tr>
 </c:forEach>
 </table>
