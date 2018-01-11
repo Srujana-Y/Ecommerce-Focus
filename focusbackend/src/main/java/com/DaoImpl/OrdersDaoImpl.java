@@ -2,16 +2,18 @@ package com.DaoImpl;
 
 import javax.transaction.Transactional;
 
+
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.Dao.OrderDao;
+import com.Dao.OrdersDao;
 import com.Model.Orders;
 
-@Repository("OrdersDaoImpl")
-public class OrdersDaoImpl implements OrderDao
+@Repository("ordersDaoImpl")
+public class OrdersDaoImpl implements OrdersDao
 {
    @Autowired
    SessionFactory sessionFactory;
@@ -21,10 +23,9 @@ public class OrdersDaoImpl implements OrderDao
 	   this.sessionFactory=sessionFactory;
    }
    
-    @Override
     @Transactional
-    public void insert(Orders orders) {
-	 Session session=sessionFactory.openSession();
+    public  void insert(Orders orders) {
+    	Session session=sessionFactory.openSession();
 	 session.persist(orders);
 	
     }

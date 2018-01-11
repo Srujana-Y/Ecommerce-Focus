@@ -1,7 +1,5 @@
 package com.DaoImpl;
 import java.util.List;
-
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -65,7 +63,7 @@ public class CategoryDaoImpl implements CategoryDao
 		return c;
 		
 	}
-	//================for delete category================================
+	
 		public void deleteCategory(int cid)
 		{
 			Session session=sessionFactory.openSession();
@@ -74,7 +72,7 @@ public class CategoryDaoImpl implements CategoryDao
 			session.delete(category);
 			session.getTransaction().commit();
 		}
-		//==========================update category======================================
+		
 		public void updateCategory(Category c)
 		{
 			Session session=sessionFactory.openSession();

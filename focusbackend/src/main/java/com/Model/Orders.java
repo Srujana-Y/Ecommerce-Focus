@@ -20,6 +20,13 @@ public class Orders
      @JoinColumn
      private User user;
      private String payment;
+     private double total;
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
+	}
 	public int getOrderId() {
 		return OrderId;
 	}

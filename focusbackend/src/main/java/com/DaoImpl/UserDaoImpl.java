@@ -23,35 +23,35 @@ import com.Model.User;
 			super();
 			this.sessionFactory=sessionFactory;
 		}
-		//==============insert user===================================
+		
 		public void insertUser(User user)
 		{
-			Session session=sessionFactory.openSession();	//creating session object
-			session.beginTransaction();						//creating transaction object
-			session.saveOrUpdate(user);				//saveOrUpdate=persists or updates the given object. 
+			Session session=sessionFactory.openSession();	
+			session.beginTransaction();						
+			session.saveOrUpdate(user);				
 													
-			session.getTransaction().commit();		//transaction is commited.commit=permanantly save transaction into db
-			
+			session.getTransaction().commit();					
 		}
-		/*//=========find user by email====================
-		public User findById(String email)
+		
+		
+		public User findUserByEmail(String email)
 		{
 			Session session=sessionFactory.openSession();
-			session.beginTransaction();
 			User u=null;
 			try
 			{
-				session.getTransaction();
+				session.beginTransaction();
 				u=session.get(User.class, email);
 				session.getTransaction().commit();
 			}
 			catch(HibernateException ex)
 			{
 				ex.printStackTrace();
-				session.getTransaction().rollback();//rollback=restore db to last commited state
-			}
+				session.getTransaction().rollback();
+			}	
 			return u;
 			
-		}*/
+		}
 
 }
+	

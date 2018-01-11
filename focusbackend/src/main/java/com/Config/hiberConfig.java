@@ -116,7 +116,7 @@ return new OrdersDaoImpl(sessionFactory);
 
 
 @Autowired
-@Bean(name = "transactionManager")			//spring-orm
+@Bean(name = "transactionManager")			
 public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) 
 {
 System.out.println("Transaction.....");

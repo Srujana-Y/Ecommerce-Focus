@@ -28,7 +28,7 @@
 <%@include file="header.jsp" %>
 <h2 style="text-align: center;"><b>Login!!</b></h2>
 <div class="container">
-<form action="${pageContext.request.contextPath}/login" class="form-signin" metod="post">
+<form action="${pageContext.request.contextPath}/login" class="form-signin" method="post">
 <h3><lable>Email:</lable></h3>
 <input type="text" name="username" class="login-box" required>
 

@@ -35,12 +35,14 @@
 <th>Price</th>
 <th style="width:15%">Description</th>
 <th>Image</th>
+<th>Action</th>
 </tr> 
 
 
 <c:if test="${empty prodlist }">
 <tr>
-<td colspan="9" align="center">No Records Exists</td>
+<td colspan="10" align="center">No Records Exists</td>
+</tr>
 </c:if>
 
 
@@ -56,6 +58,12 @@
 <td class="span2"><c:out value="${c.description }"></c:out></td>
 <td><img src="${pageContext.request.contextPath}/resources/${c.imgname}" height="50px" width="50px"></td>
 
+<td><c:set var="contextRoot" value="${pageContext.request.contextPath }"></c:set>
+<a class="btn btn-info" role="button" 
+ href="${contextRoot }/admin/prodDetails"${c.id }">
+Details</a>
+</td>
+        
 </tr>
 </c:forEach>
 </table>
