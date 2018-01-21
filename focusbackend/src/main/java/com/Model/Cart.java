@@ -19,7 +19,7 @@ public class Cart implements Serializable
 	@Id
 	@GeneratedValue
 	private int cartId;
-	private int cartProductID;
+	private int cartProductId;
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="userMailId")
@@ -34,11 +34,11 @@ public class Cart implements Serializable
 		
 	}
 	
-	public Cart(int cartId, int cartProductID,
+	public Cart(int cartId, int cartProductId,
 			User cartUserDetails, Double cartPrice, int cartStock, String cartProductName)
 	{
 		this.cartId=cartId;
-		this.cartProductID=cartProductID;
+		this.cartProductId=cartProductId;
 		this.cartUserDetails=cartUserDetails;
 		this.cartPrice=cartPrice;
 		this.cartStock=cartStock;
@@ -54,12 +54,12 @@ public class Cart implements Serializable
 		this.cartId = cartId;
 	}
 
-	public int getCartProductID() {
-		return cartProductID;
+	public int getCartProductId() {
+		return cartProductId;
 	}
 
-	public void setCartProductID(int cartProductID) {
-		this.cartProductID = cartProductID;
+	public void setCartProductId(int cartProductId) {
+		this.cartProductId = cartProductId;
 	}
 
 	public User getCartUserDetails() {

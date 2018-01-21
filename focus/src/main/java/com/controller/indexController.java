@@ -87,7 +87,7 @@ public class indexController
 	public ModelAndView getCatTable(@RequestParam("cid") int cid)
 	{
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("productList", productDaoImpl.getProdCatById(cid));
+		mav.addObject("prodList", productDaoImpl.getProdCatById(cid));
 		mav.setViewName("productCatList");
 		return mav;
 	}

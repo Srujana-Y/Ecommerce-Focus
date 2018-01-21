@@ -22,7 +22,7 @@
 
 <body>
 <div class="picture" style="text-align: center; color: green; font-family:cursive; font-size: xx-large;">
-	<h1><b>e-NATURE</b></h1>
+	<h1><b>FOCUS!!!</b></h1>
 </div>
 <nav class="navbar navbar-inverse" role="navigation">
   	<div class="container-fluid">

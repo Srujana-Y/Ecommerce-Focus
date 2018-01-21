@@ -14,10 +14,10 @@ public class Orders
 {
      @Id
      @GeneratedValue
-     private int OrderId;
+     private int orderId;
      
      @ManyToOne
-     @JoinColumn
+     @JoinColumn(name="email")
      private User user;
      private String payment;
      private double total;
@@ -28,10 +28,10 @@ public class Orders
 		this.total = total;
 	}
 	public int getOrderId() {
-		return OrderId;
+		return orderId;
 	}
 	public void setOrderId(int orderId) {
-		OrderId = orderId;
+		orderId = orderId;
 	}
 	public User getUser() {
 		return user;

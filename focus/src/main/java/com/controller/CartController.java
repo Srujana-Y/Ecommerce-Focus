@@ -26,7 +26,7 @@ import com.Model.Product;
 import com.Model.User;
 
 @Controller
-@EnableAspectJAutoProxy(proxyTargetClass = true) 
+//@EnableAspectJAutoProxy(proxyTargetClass = true) 
 public class CartController {
 
 	@Autowired
@@ -49,7 +49,7 @@ public class CartController {
 
 	
 	
-	@RequestMapping(value="/prodDetails/${c.id}")
+	@RequestMapping(value="/prodDetails/{pid}")
 	public ModelAndView prodDetails(@PathVariable("pid")int pid)
 	{
 		ModelAndView mav=new ModelAndView();
@@ -69,16 +69,16 @@ public class CartController {
 		{
 			int pid=Integer.parseInt(request.getParameter("pid"));
 			Double price=Double.parseDouble(request.getParameter("pPrice"));
-			int qty=Integer.parseInt(request.getParameter("pQty"));
+			int qty=Integer.parseInt(request.getParameter("qty"));
 			String pname=request.getParameter("pName");
-			String imgName=request.getParameter("imgName");
+			String imgName=request.getParameter("imgname");
 			Cart cartExist=cartDaoImpl.getCartById(pid, userEmail);
 			
 			if(cartExist == null)
 			{
 				Cart cm = new Cart();
 				cm.setCartPrice(price);
-				cm.setCartProductID(pid);
+				cm.setCartProductId(pid);
 				cm.setCartStock(qty);
 				cm.setCartImage(imgName);
 				cm.setCartProductName(pname);
@@ -92,8 +92,8 @@ public class CartController {
 				Cart cm = new Cart();
 				cm.setCartId(cartExist.getCartId());
 				cm.setCartPrice(price);
-				cm.setCartProductID(pid);
-				cm.setCartStock(cartExist.getCartStock()+qty);
+				cm.setCartProductId(pid);
+				cm.setCartStock(qty);
 				cm.setCartImage(imgName);
 				cm.setCartProductName(pname);
 				
@@ -110,7 +110,7 @@ public class CartController {
 			catch(Exception e)
 			{
 				e.printStackTrace();
-				mav.addObject("cartInfo",cartDaoImpl.findByCartId(userEmail));
+				
 				mav.setViewName("cart");
 				return mav;
 			}
