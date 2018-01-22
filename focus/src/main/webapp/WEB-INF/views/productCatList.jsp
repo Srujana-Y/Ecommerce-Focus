@@ -58,10 +58,6 @@
 <td class="span2"><c:out value="${c.description }"></c:out></td>
 <td><img src="${pageContext.request.contextPath}/resources/${c.imgname}" height="50px" width="50px"></td>
 
-<!-- <td><c:set var="contextRoot" value="${pageContext.request.contextPath }"></c:set>
-<a class="btn btn-info" role="button" 
- href="${contextRoot }/admin/prodDetails"${c.id }">
-Details</a> -->
 
 
 <td class="span4"><c:set var="contextRoot" value="${pageContext.request.contextPath }"></c:set>

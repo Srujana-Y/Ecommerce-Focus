@@ -76,17 +76,9 @@ public class CategoryDaoImpl implements CategoryDao
 		public void updateCategory(Category c)
 		{
 			Session session=sessionFactory.openSession();
-			try
-			{
-				session.beginTransaction();
-				session.update(c);
-				session.getTransaction().commit();
-			}
-			catch(HibernateException ex)
-			{
-				ex.printStackTrace();
-				session.getTransaction().rollback();
-			}
+			session.beginTransaction();
+			session.update(c);
+			session.getTransaction().commit();
 			
 		}
 

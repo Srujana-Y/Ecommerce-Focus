@@ -23,9 +23,7 @@
 <div class="container">
 
 <h1>Authentication Error!!</h1>
-<h3>Go to Home or<a href= "${pageContext.request.contextPath}/reLogin">Login</a></h3>
-<img src="resources/erros-wallpaper-10.jpg" style="width:100%;height:50%">
-
+<h3>Go to <a href= "${pageContext.request.contextPath}/reLogin">Login</a></h3>
 </div>
 </body>
 </html>

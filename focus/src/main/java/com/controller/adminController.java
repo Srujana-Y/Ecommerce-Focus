@@ -113,7 +113,7 @@ public class adminController
 		prod.setSupplier(supplierDaoImpl.findById(Integer.parseInt(request.getParameter("pSupplier")))); 
 		
 		String filepath=request.getSession().getServletContext().getRealPath("/");
-		String filename=file.getOriginalFilename();
+		String filename=file.getOriginalFilename();  //stored in H2
 		prod.setImgname(filename);
 		productDaoImpl.insertProduct(prod);
 		System.out.println("file path file"+filepath+" "+filename);
@@ -190,7 +190,7 @@ public class adminController
 		
 		
 		String filepath=request.getSession().getServletContext().getRealPath("/");
-		String filename=file.getOriginalFilename();
+		String filename=file.getOriginalFilename();// will go to H2 database
 		prod.setImgname(filename);
 		productDaoImpl.update(prod);
 		System.out.println("file path file "+filepath+" "+filename);
@@ -238,8 +238,6 @@ public class adminController
 			ModelAndView mav=new ModelAndView();
 			Category c=categoryDaoImpl.findById(cid);
 			mav.addObject("cat", c);
-			//mav.addObject("cList", categoryDaoImpl);
-			//mav.addObject("sList", supplierDaoImpl);
 			mav.setViewName("updateCategory");
 			return mav;
 		}
@@ -281,7 +279,7 @@ public class adminController
 		{
 			ModelAndView mav=new ModelAndView();
 			Supplier s=supplierDaoImpl.findById(sid);
-			mav.addObject("sup",s);
+			mav.addObject("sat",s);
 			//mav.addObject("sList", supplierDaoImpl);
 			mav.setViewName("updateSupplier");
 			return mav;

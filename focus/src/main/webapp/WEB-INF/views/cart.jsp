@@ -23,7 +23,7 @@ background-image: url("resources/images/wall2.jpg");
 <body>
 <%@include file="header.jsp" %>
 <div class="container">
-	<h1><img  src="${pageContext.request.contextPath}/resources/images/cart.png" height="10%" width="10%">CART</h1>
+	<h1>CART</h1>
 	<table class="table table-hover table-condenced" id="cart">
 <thead>
 <tr>
@@ -49,7 +49,7 @@ background-image: url("resources/images/wall2.jpg");
 <td><c:out value="${c.cartStock}"></c:out></td>
 <td><c:out value="${c.cartPrice }"></c:out></td>
 		
-<td><img src="${pageContext.request.contextPath}/resources/images/<c:out value='${c.cartImage}'></c:out>"height="50px" width="50px"></td>
+<td><img src="${pageContext.request.contextPath}/resources/<c:out value='${c.cartImage}'></c:out>"height="50px" width="50px"></td>
 		
 <td><c:out value="${c.cartStock * c.cartPrice }"></c:out></td>
 		

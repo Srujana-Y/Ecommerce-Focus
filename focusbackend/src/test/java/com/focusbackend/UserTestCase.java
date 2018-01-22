@@ -21,7 +21,7 @@ public class UserTestCase {
 		   context=new AnnotationConfigApplicationContext();
 		   context.scan("com.*");
 		   context.refresh();
-		  userDao=(UserDaoImpl)context.getBean("userDaoImpl");
+		  userDao=(UserDaoImpl)context.getBean("UserDaoImpl");
 	   }
 	   
 	   @Test
@@ -33,7 +33,7 @@ public class UserTestCase {
 		   uu.setPassword("Test");
 		   uu.setRole("ROLE_USER");
 		   uu.setAddress("Test");
-		   uu.setPhone("889625415");
+		   uu.setPhone("9889625415");
 		   userDao.insertUser(uu);
 		   assertEquals(uu.getEmail(),uu.getEmail());
 	   }
